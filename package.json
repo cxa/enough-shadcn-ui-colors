@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "biome lint --error-on-warnings ./src",
     "preview": "vite preview",
-    "deploy": "build && gh-pages -d dist"
+    "deploy": "pnpm build && gh-pages -d dist"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.4",
