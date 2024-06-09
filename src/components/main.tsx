@@ -91,11 +91,16 @@ export default function Main() {
           "relative",
         )}
       >
-        <div className="absolute z-10 w-full bottom-[calc(50%_-_1.25rem)] lg:bottom-4 flex justify-center">
-          <Button variant="outline" onClick={() => setFineTuning((t) => !t)}>
-            {showsFineTuning ? "Hide" : "Fine Tuning"}
-          </Button>
-        </div>
+        <Button
+          className={cn(
+            "absolute z-10 bottom-[calc(50%_-_1.25rem)] lg:bottom-4",
+            "left-1/2 w-28 -ml-14",
+          )}
+          variant="outline"
+          onClick={() => setFineTuning((t) => !t)}
+        >
+          {showsFineTuning ? "Hide" : "Fine Tuning"}
+        </Button>
 
         <div className="relative z-0 size-full overflow-hidden">
           <div
