@@ -118,7 +118,7 @@ export default function Main() {
           </div>
 
           <iframe
-            src="/?demo"
+            src="./?demo"
             title="Demo light"
             className="size-full border-t"
             ref={lightIFrameRef}
@@ -149,7 +149,7 @@ export default function Main() {
             </Alert>
           </div>
           <iframe
-            src="/?demo=dark"
+            src="./?demo=dark"
             title="Demo dark"
             className="size-full bg-foreground"
             ref={darkIFrameRef}
