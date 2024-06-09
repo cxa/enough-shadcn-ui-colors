@@ -72,7 +72,13 @@ export default function Main() {
         "mx-auto",
       )}
     >
-      <div className="flex gap-5 p-5 justify-center items-center">
+      <div
+        className={cn(
+          "flex gap-2 lg:gap-5 justify-center items-center",
+          "p-2 pt-[max(0.5rem,_env(safe-area-inset-top))]",
+          "lg:p-5 lg:pt-[max(1.25rem,_env(safe-area-inset-top))]",
+        )}
+      >
         <div className="flex items-center h-10 px-4 bg-secondary rounded-md">
           <HuePicker value={hue} onInput={handleHueChange} />
         </div>
