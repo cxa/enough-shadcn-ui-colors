@@ -5,6 +5,7 @@ import CardsGoal from "./cards/goals";
 import CardsPayment from "./cards/payment";
 import CardsTeam from "./cards/team";
 import Controls from "./controls";
+import { Icons } from "./icons";
 
 export default function Demo({ dark }: { dark?: boolean }) {
   React.useEffect(() => {
@@ -12,7 +13,7 @@ export default function Demo({ dark }: { dark?: boolean }) {
   }, [dark]);
 
   return (
-    <div className="p-5 sm:px-10">
+    <div className="p-5 sm:px-10 pb-24">
       <section
         className={cn(
           "mx-auto",
@@ -37,7 +38,7 @@ export default function Demo({ dark }: { dark?: boolean }) {
           Decent color schemes for your next shadcn/ui project
         </p>
       </section>
-      <section className="space-y-10 pb-48">
+      <section className="space-y-10">
         <Controls />
         <div className="flex flex-col sm:flex-row gap-5">
           <CardsGoal />
@@ -45,6 +46,15 @@ export default function Demo({ dark }: { dark?: boolean }) {
         </div>
         <CardsPayment />
         <CardsDataTable />
+        <div className="flex justify-center">
+          <a
+            href="https://github.com/cxa/enough-shadcn-ui-colors"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Icons.gitHub className="mr-2 h-4 w-4" />
+          </a>
+        </div>
       </section>
     </div>
   );
