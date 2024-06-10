@@ -1,3 +1,4 @@
+import { useThrottle } from "@uidotdev/usehooks";
 import React from "react";
 import type { HueChangeEventHandler } from "simple-hue-picker";
 import HuePicker from "simple-hue-picker/react";
@@ -24,6 +25,7 @@ export default function Main() {
     s: ds >= 0 && ds <= 100 ? ds : 100,
     l: dl >= 0 && ds <= 100 ? dl : Math.trunc(Math.random() * 5) + 50,
   });
+
   const [showsFineTuning, setFineTuning] = React.useState(false);
   const lightIFrameRef = React.useRef<HTMLIFrameElement>(null);
   const darkIFrameRef = React.useRef<HTMLIFrameElement>(null);
@@ -56,9 +58,11 @@ export default function Main() {
     updateDarkVars();
   }, [hue, dark.l, dark.s]);
 
+  const [tHue, tLight, tDark] = useThrottle([hue, light, dark], 250);
+  const hash = [tHue, tLight.s, tLight.l, tDark.s, tDark.l].join(",");
   React.useEffect(() => {
-    window.location.hash = [hue, light.s, light.l, dark.s, dark.l].join(",");
-  }, [hue, light.s, light.l, dark.s, dark.l]);
+    window.location.hash = hash;
+  }, [hash]);
 
   const handleHueChange: HueChangeEventHandler = (e) => {
     if (typeof e.detail === "number") setHue(e.detail);
