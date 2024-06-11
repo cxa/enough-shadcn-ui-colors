@@ -70,90 +70,89 @@ const CustomizerCode = ({
   const darkTheme = genVars({ h, s: ds, l: dl }, true);
 
   return (
-    <pre
-      ref={preRef}
-      className="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900 font-mono text-sm"
-    >
-      <span className="line text-white">@layer base &#123;</span>
-      <span className="line text-white">&nbsp;&nbsp;:root &#123;</span>
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--background: {lightTheme?.background}&#x3b;
-      </span>
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--foreground: {lightTheme.foreground}&#x3b;
-      </span>
-      {[
-        "card",
-        "popover",
-        "primary",
-        "secondary",
-        "muted",
-        "accent",
-        "destructive",
-      ].map((prefix) => (
-        <React.Fragment key={prefix}>
-          <span className="line text-white">
-            &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
-            {lightTheme?.[prefix as keyof ColorVars]}&#x3b;
-          </span>
-          <span className="line text-white">
-            &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
-            {lightTheme?.[`${prefix}-foreground` as keyof ColorVars]}&#x3b;
-          </span>
-        </React.Fragment>
-      ))}
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--border: {lightTheme?.border}&#x3b;
-      </span>
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--input: {lightTheme?.input}&#x3b;
-      </span>
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--ring: {lightTheme?.ring}&#x3b;
-      </span>
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--radius: 0.5rem;
-      </span>
-      <span className="line text-white">&nbsp;&nbsp;&#125;</span>
-      <span className="line text-white">&nbsp;</span>
-      <span className="line text-white">&nbsp;&nbsp;.dark &#123;</span>
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--background: {darkTheme?.background}&#x3b;
-      </span>
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--foreground: {darkTheme?.foreground}&#x3b;
-      </span>
-      {[
-        "card",
-        "popover",
-        "primary",
-        "secondary",
-        "muted",
-        "accent",
-        "destructive",
-      ].map((prefix) => (
-        <React.Fragment key={prefix}>
-          <span className="line text-white">
-            &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
-            {darkTheme?.[prefix as keyof ColorVars]}&#x3b;
-          </span>
-          <span className="line text-white">
-            &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
-            {darkTheme?.[`${prefix}-foreground` as keyof ColorVars]}&#x3b;
-          </span>
-        </React.Fragment>
-      ))}
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--border: {darkTheme?.border}&#x3b;
-      </span>
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--input: {darkTheme?.input}&#x3b;
-      </span>
-      <span className="line text-white">
-        &nbsp;&nbsp;&nbsp;&nbsp;--ring: {darkTheme?.ring}&#x3b;
-      </span>
-      <span className="line text-white">&nbsp;&nbsp;&#125;</span>
-      <span className="line text-white">&#125;</span>
-    </pre>
+    <div className="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900 font-mono text-sm">
+      <pre ref={preRef} className="text-wrap">
+        <code className="line text-white">@layer base &#123;</code>
+        <code className="line text-white">&nbsp;&nbsp;:root &#123;</code>
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--background: {lightTheme?.background}&#x3b;
+        </code>
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--foreground: {lightTheme.foreground}&#x3b;
+        </code>
+        {[
+          "card",
+          "popover",
+          "primary",
+          "secondary",
+          "muted",
+          "accent",
+          "destructive",
+        ].map((prefix) => (
+          <React.Fragment key={prefix}>
+            <code className="line text-white">
+              &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
+              {lightTheme?.[prefix as keyof ColorVars]}&#x3b;
+            </code>
+            <code className="line text-white">
+              &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
+              {lightTheme?.[`${prefix}-foreground` as keyof ColorVars]}&#x3b;
+            </code>
+          </React.Fragment>
+        ))}
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--border: {lightTheme?.border}&#x3b;
+        </code>
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--input: {lightTheme?.input}&#x3b;
+        </code>
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--ring: {lightTheme?.ring}&#x3b;
+        </code>
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--radius: 0.5rem;
+        </code>
+        <code className="line text-white">&nbsp;&nbsp;&#125;</code>
+        <code className="line text-white">&nbsp;</code>
+        <code className="line text-white">&nbsp;&nbsp;.dark &#123;</code>
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--background: {darkTheme?.background}&#x3b;
+        </code>
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--foreground: {darkTheme?.foreground}&#x3b;
+        </code>
+        {[
+          "card",
+          "popover",
+          "primary",
+          "secondary",
+          "muted",
+          "accent",
+          "destructive",
+        ].map((prefix) => (
+          <React.Fragment key={prefix}>
+            <code className="line text-white">
+              &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
+              {darkTheme?.[prefix as keyof ColorVars]}&#x3b;
+            </code>
+            <code className="line text-white">
+              &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
+              {darkTheme?.[`${prefix}-foreground` as keyof ColorVars]}&#x3b;
+            </code>
+          </React.Fragment>
+        ))}
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--border: {darkTheme?.border}&#x3b;
+        </code>
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--input: {darkTheme?.input}&#x3b;
+        </code>
+        <code className="line text-white">
+          &nbsp;&nbsp;&nbsp;&nbsp;--ring: {darkTheme?.ring}&#x3b;
+        </code>
+        <code className="line text-white">&nbsp;&nbsp;&#125;</code>
+        <code className="line text-white">&#125;</code>
+      </pre>
+    </div>
   );
 };
