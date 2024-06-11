@@ -58,11 +58,12 @@ export default function Main() {
     updateDarkVars();
   }, [hue, dark.l, dark.s]);
 
-  const [tHue, tLight, tDark] = useThrottle([hue, light, dark], 250);
-  const hash = [tHue, tLight.s, tLight.l, tDark.s, tDark.l].join(",");
-  React.useEffect(() => {
-    window.location.hash = hash;
-  }, [hash]);
+  // limit url hash refresh rate  
+  const hash = [hue, light.s, light.l, dark.s, dark.l].join(",");  
+  const thrHash = useThrottle(hash, 250);  
+  React.useEffect(() => {  
+    window.location.hash = thrHash;  
+  }, [thrHash]);  
 
   const handleHueChange: HueChangeEventHandler = (e) => {
     if (typeof e.detail === "number") setHue(e.detail);
