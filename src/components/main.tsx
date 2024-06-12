@@ -58,12 +58,12 @@ export default function Main() {
     updateDarkVars();
   }, [hue, dark.l, dark.s]);
 
-  // limit url hash refresh rate  
-  const hash = [hue, light.s, light.l, dark.s, dark.l].join(",");  
-  const thrHash = useThrottle(hash, 250);  
-  React.useEffect(() => {  
-    window.location.hash = thrHash;  
-  }, [thrHash]);  
+  // limit url hash refresh rate
+  const hash = [hue, light.s, light.l, dark.s, dark.l].join(",");
+  const thrHash = useThrottle(hash, 250);
+  React.useEffect(() => {
+    window.location.hash = thrHash;
+  }, [thrHash]);
 
   const handleHueChange: HueChangeEventHandler = (e) => {
     if (typeof e.detail === "number") setHue(e.detail);
@@ -72,7 +72,7 @@ export default function Main() {
   return (
     <div
       className={cn(
-        "min-h-screen w-full max-w-screen-2xl",
+        "min-h-dvh w-full max-w-screen-2xl",
         "grid grid-rows-[auto_1fr]",
         "mx-auto",
       )}
