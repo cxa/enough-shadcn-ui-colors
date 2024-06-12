@@ -66,8 +66,8 @@ const CustomizerCode = ({
     .substring(1)
     .split(",")
     .map((s) => Number.parseInt(s));
-  const lightTheme = genVars({ h, s: ls, l: ll });
-  const darkTheme = genVars({ h, s: ds, l: dl }, true);
+  const lightTheme = genVars({ h, s: ls / 100, l: ll / 100 });
+  const darkTheme = genVars({ h, s: ds / 100, l: dl / 100 }, true);
 
   return (
     <div className="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900 font-mono text-sm">
