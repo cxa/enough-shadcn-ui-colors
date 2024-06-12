@@ -1,6 +1,5 @@
 import { CheckCheck, Copy } from "lucide-react";
 import React from "react";
-import { type ColorVars, genVars } from "~/lib/color";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -62,94 +61,42 @@ export default function CopyCode() {
 const CustomizerCode = ({
   preRef,
 }: { preRef: React.RefObject<React.ElementRef<"pre">> }) => {
-  const [h, ls, ll, ds, dl] = window.location.hash
-    .substring(1)
-    .split(",")
-    .map((s) => Number.parseInt(s));
-  const lightTheme = genVars({ h, s: ls / 100, l: ll / 100 });
-  const darkTheme = genVars({ h, s: ds / 100, l: dl / 100 }, true);
+  const iframes = document.querySelectorAll("iframe");
+  const lightVars = iframes[0]?.contentWindow?.document.documentElement
+    .getAttribute("style")
+    ?.split(";")
+    .map((v) => v.trim())
+    .filter((v) => v.length);
+  const darkVars = iframes[1].contentWindow?.document.documentElement
+    .getAttribute("style")
+    ?.split(";")
+    .map((v) => v.trim())
+    .filter((v) => v.length);
+
+  if (!lightVars && !darkVars)
+    return <p className="destructive">Impossible error occurred!</p>;
 
   return (
     <div className="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900 font-mono text-sm">
       <pre ref={preRef} className="text-wrap">
         <code className="line text-white">@layer base &#123;</code>
         <code className="line text-white">&nbsp;&nbsp;:root &#123;</code>
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--background: {lightTheme?.background}&#x3b;
-        </code>
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--foreground: {lightTheme.foreground}&#x3b;
-        </code>
-        {[
-          "card",
-          "popover",
-          "primary",
-          "secondary",
-          "muted",
-          "accent",
-          "destructive",
-        ].map((prefix) => (
-          <React.Fragment key={prefix}>
-            <code className="line text-white">
-              &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
-              {lightTheme?.[prefix as keyof ColorVars]}&#x3b;
-            </code>
-            <code className="line text-white">
-              &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
-              {lightTheme?.[`${prefix}-foreground` as keyof ColorVars]}&#x3b;
-            </code>
-          </React.Fragment>
+        {lightVars?.map((v) => (
+          <code className="line text-white" key={v}>
+            &nbsp;&nbsp;&nbsp;&nbsp;{v}&#x3b;
+          </code>
         ))}
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--border: {lightTheme?.border}&#x3b;
-        </code>
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--input: {lightTheme?.input}&#x3b;
-        </code>
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--ring: {lightTheme?.ring}&#x3b;
-        </code>
         <code className="line text-white">
           &nbsp;&nbsp;&nbsp;&nbsp;--radius: 0.5rem;
         </code>
         <code className="line text-white">&nbsp;&nbsp;&#125;</code>
         <code className="line text-white">&nbsp;</code>
         <code className="line text-white">&nbsp;&nbsp;.dark &#123;</code>
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--background: {darkTheme?.background}&#x3b;
-        </code>
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--foreground: {darkTheme?.foreground}&#x3b;
-        </code>
-        {[
-          "card",
-          "popover",
-          "primary",
-          "secondary",
-          "muted",
-          "accent",
-          "destructive",
-        ].map((prefix) => (
-          <React.Fragment key={prefix}>
-            <code className="line text-white">
-              &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
-              {darkTheme?.[prefix as keyof ColorVars]}&#x3b;
-            </code>
-            <code className="line text-white">
-              &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
-              {darkTheme?.[`${prefix}-foreground` as keyof ColorVars]}&#x3b;
-            </code>
-          </React.Fragment>
+        {darkVars?.map((v) => (
+          <code className="line text-white" key={v}>
+            &nbsp;&nbsp;&nbsp;&nbsp;{v}&#x3b;
+          </code>
         ))}
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--border: {darkTheme?.border}&#x3b;
-        </code>
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--input: {darkTheme?.input}&#x3b;
-        </code>
-        <code className="line text-white">
-          &nbsp;&nbsp;&nbsp;&nbsp;--ring: {darkTheme?.ring}&#x3b;
-        </code>
         <code className="line text-white">&nbsp;&nbsp;&#125;</code>
         <code className="line text-white">&#125;</code>
       </pre>

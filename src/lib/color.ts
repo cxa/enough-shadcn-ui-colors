@@ -46,7 +46,6 @@ const defaults: { light: ColorVars; dark: ColorVars } = {
     border: "240 5.9% 90%",
     input: "240 5.9% 90%",
     ring: "240 5.9% 10%",
-    radius: "0.5rem",
   },
   dark: {
     background: "240 10% 3.9%",
