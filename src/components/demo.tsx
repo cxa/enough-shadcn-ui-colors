@@ -4,8 +4,11 @@ import { CardsDataTable } from "./cards/data-table";
 import CardsGoal from "./cards/goals";
 import CardsPayment from "./cards/payment";
 import CardsTeam from "./cards/team";
+import BarChars from "./charts/bar";
+import PieCharts from "./charts/pie";
 import Controls from "./controls";
 import { Icons } from "./icons";
+import SidebarDemo from "./sidebar";
 
 export default function Demo({ dark }: { dark?: boolean }) {
   React.useEffect(() => {
@@ -23,8 +26,8 @@ export default function Demo({ dark }: { dark?: boolean }) {
       >
         <h1
           className={cn(
-            "font-thin tracking-wide text-center text-3xl sm:text-4xl md:text-6xl",
-            "leading-tight lg:leading-[1.1] text-balance",
+            "tracking-wide text-center text-3xl sm:text-4xl md:text-6xl",
+            "leading-tight lg:leading-[1.1] font-bold uppercase",
           )}
         >
           Enough
@@ -44,8 +47,13 @@ export default function Demo({ dark }: { dark?: boolean }) {
           <CardsGoal />
           <CardsTeam />
         </div>
+        <div className="flex flex-col sm:flex-row gap-5">
+          <BarChars />
+          <PieCharts />
+        </div>
         <CardsPayment />
         <CardsDataTable />
+        <SidebarDemo />
         <div className="flex justify-center">
           <a
             href="https://github.com/cxa/enough-shadcn-ui-colors"

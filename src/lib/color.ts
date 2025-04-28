@@ -23,6 +23,19 @@ export type ColorVars = {
   border: HSL;
   input: HSL;
   ring: HSL;
+  "char-1": HSL;
+  "char-2": HSL;
+  "char-3": HSL;
+  "char-4": HSL;
+  "char-5": HSL;
+  "sidebar-background": HSL;
+  "sidebar-foreground": HSL;
+  "sidebar-primary": HSL;
+  "sidebar-primary-foreground": HSL;
+  "sidebar-accent": HSL;
+  "sidebar-accent-foreground": HSL;
+  "sidebar-border": HSL;
+  "sidebar-ring": HSL;
 };
 
 const defaults: { light: ColorVars; dark: ColorVars } = {
@@ -46,6 +59,19 @@ const defaults: { light: ColorVars; dark: ColorVars } = {
     border: "240 5.9% 90%",
     input: "240 5.9% 90%",
     ring: "240 5.9% 10%",
+    "chart-1": "12 76% 61% ",
+    "chart-2": "173 58% 39%",
+    "chart-3": "197 37% 24%",
+    "chart-4": "43 74% 66%",
+    "chart-5": "27 87% 67%",
+    "sidebar-background": "0 0% 98%",
+    "sidebar-foreground": "240 5.3% 26.1%",
+    "sidebar-primary": "240 5.9% 10%",
+    "sidebar-primary-foreground": "0 0% 98%",
+    "sidebar-accent": "240 4.8% 95.9%",
+    "sidebar-accent-foreground": "240 5.9% 10%",
+    "sidebar-border": "220 13% 91%",
+    "sidebar-ring": "217.2 91.2% 59.8%",
   },
   dark: {
     background: "240 10% 3.9%",
@@ -67,6 +93,19 @@ const defaults: { light: ColorVars; dark: ColorVars } = {
     border: "240 3.7% 15.9%",
     input: "240 3.7% 15.9%",
     ring: "240 4.9% 83.9%",
+    "chart-1": "220 70% 50% ",
+    "chart-2": "160 60% 45%",
+    "chart-3": "30 80% 55%",
+    "chart-4": "280 65% 60%",
+    "chart-5": "340 75% 55%",
+    "sidebar-background": "240 5.9% 10%",
+    "sidebar-foreground": "240 4.8% 95.9%",
+    "sidebar-primary": "224.3 76.3% 48%",
+    "sidebar-primary-foreground": "0 0% 100%",
+    "sidebar-accent": "240 3.7% 15.9%",
+    "sidebar-accent-foreground": "240 4.8% 95.9%",
+    "sidebar-border": "240 3.7% 15.9%",
+    "sidebar-ring": "217.2 91.2% 59.8%",
   },
 };
 
@@ -117,10 +156,14 @@ export const genVars = (
     ...d,
     primary,
     "primary-foreground": fg,
-
     destructive,
     "destructive-foreground": destructiveFg,
     ring: primary,
+    "chart-1": primary,
+    "chart-2": adjust_hue(okhsl, 180),
+    "chart-3": adjust_hue(okhsl, 240),
+    "chart-4": adjust_hue(okhsl, 90),
+    "chart-5": adjust_hue(okhsl, 270),
   };
 };
 
@@ -134,4 +177,9 @@ export const lightnessGradient = (h: number, s: number) => {
   const left = to_hsl({ mode: "okhsl", h, s, l: 0.01 });
   const right = to_hsl({ mode: "okhsl", h, s, l: 0.99 });
   return `linear-gradient(90deg, hsl(${left}) 0%, hsl(${right}) 100%)`;
+};
+
+const adjust_hue = (base, hue) => {
+  const h = (base.h + hue) % 360;
+  return to_hsl({ ...base, h });
 };
